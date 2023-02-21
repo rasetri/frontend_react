@@ -1,8 +1,13 @@
-function Home(user) {
+import Layout from "../../components/home/Layout";
+
+function Home({user}) {
     console.log("userss", user);
 
   return (
-    <div></div>
+    <div>
+      <Layout user={user}>
+        </Layout>
+    </div>
   );
 }
 

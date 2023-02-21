@@ -1,0 +1,11 @@
+.mainWP{
+    background-position: 0 -60px;
+}
+
+.lastWP{
+    display: flex;flex-wrap: wrap;justify-content: flex-end;
+}
+
+.hdesk{
+    color: blue;
+}
