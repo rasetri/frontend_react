@@ -34,6 +34,28 @@ export class TicketService {
     });
   }
 
+  closeTicket(id) {
+    return this.client.mutate({
+      mutation: gql`
+        mutation updateTicket($input: updateTicketInput!) {
+          updateTicket(input: $input) {
+            ticket {
+              id
+            }
+          }
+        }
+      `,
+      variables: {
+        input: {
+          where: {id: id},
+          data: {
+            closed: true,
+          },
+        },
+      },
+    });
+  }
+
   userGetTickets(id, closed) {
     return this.client.query({
       query: gql`
@@ -59,7 +81,7 @@ export class TicketService {
         limit: 50,
         where: {
           id: id,
-          closed: closed
+          closed: closed,
         },
       },
     });

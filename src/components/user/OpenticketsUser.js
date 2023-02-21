@@ -8,6 +8,15 @@ const Openticketsuser = ({ user }) => {
   const _ticketService = new TicketService();
   const closed = false;
 
+  //Delete a closed support ticket
+  const deleteFromList = (id) => {
+    let list = [...listTickets];
+    list = list.filter((x) => {
+      return x.id !== id;
+    });
+    set_listTickets(list);
+  };
+
   //Get initial Open tickets for the user
   const getInitData = () => {
     _ticketService
@@ -24,7 +33,6 @@ const Openticketsuser = ({ user }) => {
           set_listTickets(tickets);
         } else {
           //There are no ticket yet for the user
-          console.log(tickets);
         }
       }) //There are errors
       .catch((res) => toast.error(res.message));
@@ -37,7 +45,7 @@ const Openticketsuser = ({ user }) => {
   return (
     <>
       <ToastContainer position="top-center" autoClose={3000} />
-      <Tablelist ticketlist={listTickets}/>
+      <Tablelist ticketlist={listTickets} deleteFromList={deleteFromList}/>
     </>
   );
 };

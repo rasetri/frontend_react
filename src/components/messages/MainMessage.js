@@ -1,15 +1,12 @@
-import "./Message.css";
-
 const MainMessage = ({ user, ticket }) => {
-  console.log("Ticket", ticket);
   return (
     <div className="container spaceUp">
       <div className="row">
         <div className="col-md-10 col-lg-8">
           <div className="post-preview">
-            <h2 className="post-title">
+            <h3 className="post-title">
               <u>Title</u>: {ticket.label}
-            </h2>
+            </h3>
             <blockquote className="blockquote">
               <p>{ticket.description}</p>
               <footer className="blockquote-footer">
