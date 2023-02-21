@@ -7,17 +7,12 @@ export class LoginService{
   })
 
   addPerson(person){   
-    const response = {
-      status: false,
-      data: {}
-    }    
-  
-    this.client
+    return this.client
       .mutate({
         mutation: gql`
-          mutation createPersonne($input: createPersonneInput!) {
-            createPersonne(input: $input) {
-              personne {
+          mutation createPerson($input: createPersonInput!) {
+            createPerson(input: $input) {
+              person {
                 id
                 name
                 email
@@ -32,20 +27,11 @@ export class LoginService{
               name: person.name,
               email: person.email,
               password: person.password,
-              role: "user",
+              role: person.role,
             },
           },
         },
       })
-      .then(async (res) => {
-        response.status = true;
-        response.data = res.data;
-      })
-      .catch(() => {
-        response.status = false;
-      });
-  
-    return response;
   }
 }
 
