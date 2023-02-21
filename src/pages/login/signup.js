@@ -88,6 +88,7 @@ function Signup() {
                             id="email"
                             aria-describedby="emailHelp"
                             placeholder="Email"
+                            name="email"
                             {...register("email", {
                               required: true,
                               pattern: {

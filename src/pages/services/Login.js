@@ -33,5 +33,29 @@ export class LoginService{
         },
       })
   }
+
+  login(person){   
+    return this.client
+      .query({
+        query: gql`
+          query peopleConnection($where: JSON!) {
+            peopleConnection(where: $where) {
+              values {
+                id
+                name
+                email
+                role
+              }              
+            }
+          }
+        `,
+        variables: {
+          where: {
+            email: person.email,
+            password: person.password
+          },
+        },
+      })
+  }
 }
 
