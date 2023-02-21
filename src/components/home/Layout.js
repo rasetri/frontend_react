@@ -2,7 +2,6 @@ import Footer from "./Footer";
 import Navigation from "./Navigation";
 
 const Layout = ({ children, user, title }) => {
-  console.log("user from Layout", user);
   return (
     <>
       <Navigation user={user} />

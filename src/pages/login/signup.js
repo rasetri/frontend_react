@@ -1,6 +1,6 @@
 import "./login.css";
 import { Link } from "react-router-dom";
-import { LoginService } from "../services/Login";
+import { LoginService } from "../../services/Login";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";

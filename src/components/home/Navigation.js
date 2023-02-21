@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Layout.css";
 import { useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
@@ -56,9 +57,9 @@ const Navigation = ({ user }) => {
             </li>
             {isUser && (
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/createTicket" state={user}>
                   Request a support
-                </a>
+                </Link>
               </li>
             )}
           </ul>
