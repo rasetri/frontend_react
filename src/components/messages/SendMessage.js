@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 
-const SendMessage = ({ user, ticket }) => {
+const SendMessage = ({ user, ticket, addToList }) => {
   const {
     handleSubmit,
     register,
@@ -24,7 +24,8 @@ const SendMessage = ({ user, ticket }) => {
             _messageService
               .addMessage(values.message, ticket.id, user.id)
               .then((res) => {
-                toast.success(`Message has been sent!`);
+                toast.success(`Message has been posted!`);
+                addToList(res.data.createTicketMessage.ticketMessage);
                 clearInputs();
               })
               .catch((res) => toast.error(res.message));
@@ -68,7 +69,7 @@ const SendMessage = ({ user, ticket }) => {
             className="btn btn-primary shadow d-block w-100"
             type="submit"
           >
-            Send{" "}
+            Post{" "}
           </button>
         </div>
       </form>

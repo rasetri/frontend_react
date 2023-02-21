@@ -10,12 +10,13 @@ export class MessageService {
     return this.client.mutate({
       mutation: gql`
         mutation createTicketMessage($input: createTicketMessageInput!) {
-            createTicketMessage(input: $input) {
+          createTicketMessage(input: $input) {
             ticketMessage {
               id
               message
               person_id {
-                id name
+                id
+                name
               }
               created_at
             }
@@ -34,16 +35,41 @@ export class MessageService {
     });
   }
 
-  userGetTickets(id, closed) {
+  getMessagesByTicket(id) {
+    return this.client.query({
+      query: gql`
+        query ticketMessages($where: JSON!) {
+          ticketMessages(where: $where, sort: "id:desc",) {
+            id
+            message
+            created_at
+            person_id {
+              id
+              name
+            }
+          }
+        }
+      `,
+      variables: {
+        where: {
+          ticket_id: id,
+        },
+      },
+    });
+  }
+
+  adminGetTickets(closed) {
     return this.client.query({
       query: gql`
         query ticketsConnection($where: JSON!) {
-          ticketsConnection(where: $where) {
-             {
+          ticketsConnection(where: $where, sort: "id:desc", limit: 50) {
+            values {
               id
-              message
+              label
+              description
               created_at
               updated_at
+              closed
               user_id {
                 id
                 name
@@ -53,11 +79,8 @@ export class MessageService {
         }
       `,
       variables: {
-        sort: "updated_at:desc",
-        limit: 50,
         where: {
-          id: id,
-          closed: closed
+          closed: closed,
         },
       },
     });

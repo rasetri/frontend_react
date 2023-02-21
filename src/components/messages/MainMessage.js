@@ -1,26 +1,20 @@
 const MainMessage = ({ user, ticket }) => {
   return (
-    <div className="container spaceUp">
-      <div className="row">
-        <div className="col-md-10 col-lg-8">
-          <div className="post-preview">
-            <h3 className="post-title">
-              <u>Title</u>: {ticket.label}
-            </h3>
-            <blockquote className="blockquote">
-              <p>{ticket.description}</p>
-              <footer className="blockquote-footer">
-                {ticket.user_id.author} -{" "}
-                <cite title="Source Title">
-                  {new Date(ticket.created_at).toLocaleString()}
-                </cite>
-              </footer>
-            </blockquote>
-          </div>
-          <hr />
+    <>
+      <div className="card mb-4">
+        <div className="card-header">
+          {ticket.user_id.name} -{" "}
+          {new Date(ticket.created_at).toLocaleDateString()},{" "}
+          {new Date(ticket.created_at).getHours()}:
+          {new Date(ticket.created_at).getMinutes()}
         </div>
+        <div className="card-body">
+          <h3>{ticket.label}</h3>
+          <p>{ticket.description}</p>
+        </div>
+        <div className="card-footer"></div>
       </div>
-    </div>
+    </>
   );
 };
 

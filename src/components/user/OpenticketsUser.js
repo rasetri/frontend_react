@@ -28,12 +28,7 @@ const Openticketsuser = ({ user }) => {
             ticketsConnection: { values: tickets },
           },
         } = res;
-        if (tickets.length) {
-          //There are some tickets
-          set_listTickets(tickets);
-        } else {
-          //There are no ticket yet for the user
-        }
+        set_listTickets(tickets);
       }) //There are errors
       .catch((res) => toast.error(res.message));
   };
@@ -45,7 +40,7 @@ const Openticketsuser = ({ user }) => {
   return (
     <>
       <ToastContainer position="top-center" autoClose={3000} />
-      <Tablelist ticketlist={listTickets} deleteFromList={deleteFromList}/>
+      <Tablelist ticketlist={listTickets} deleteFromList={deleteFromList} />
     </>
   );
 };

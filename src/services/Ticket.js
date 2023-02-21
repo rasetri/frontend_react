@@ -47,7 +47,7 @@ export class TicketService {
       `,
       variables: {
         input: {
-          where: {id: id},
+          where: { id: id },
           data: {
             closed: true,
           },
@@ -60,7 +60,7 @@ export class TicketService {
     return this.client.query({
       query: gql`
         query ticketsConnection($where: JSON!) {
-          ticketsConnection(where: $where) {
+          ticketsConnection(where: $where, sort: "id:desc", limit: 50) {
             values {
               id
               label
@@ -77,10 +77,36 @@ export class TicketService {
         }
       `,
       variables: {
-        sort: "updated_at:desc",
-        limit: 50,
         where: {
           id: id,
+          closed: closed,
+        },
+      },
+    });
+  }
+
+  adminGetTickets(closed) {
+    return this.client.query({
+      query: gql`
+        query ticketsConnection($where: JSON!) {
+          ticketsConnection(where: $where, sort: "id:desc", limit: 50) {
+            values {
+              id
+              label
+              description
+              created_at
+              updated_at
+              closed
+              user_id {
+                id
+                name
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        where: {
           closed: closed,
         },
       },
