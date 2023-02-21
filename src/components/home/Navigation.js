@@ -46,14 +46,14 @@ const Navigation = ({ user }) => {
         <div className="collapse navbar-collapse" id="navcol-1">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Open tickets
-              </a>
+              <Link className="nav-link" to="/openTickets" state={user}>
+              Open tickets
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/closedTickets" state={user}>
                 Closed tickets
-              </a>
+              </Link>
             </li>
             {isUser && (
               <li className="nav-item">
