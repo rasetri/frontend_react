@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginService } from "../services/Login";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 
 function Signin() {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -21,8 +22,11 @@ function Signin() {
             peopleConnection: { values: login },
           },
         } = res;
-        if (login.length)
+        if (login.length){
           toast.success(`User '${login[0].name}' logged successfully!`);
+          localStorage.setItem("loggedUser", JSON.stringify(login[0]));
+          navigate('/');
+        }       
         else toast.error(`Invalid informations`);
       })
       .catch((res) => toast.error(res.message));
@@ -60,7 +64,7 @@ function Signin() {
                               required: true,
                               pattern: {
                                 value:
-                                  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                  /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/,
                                 message: "email is invalid",
                               },
                             })}

@@ -93,7 +93,7 @@ function Signup() {
                               required: true,
                               pattern: {
                                 value:
-                                  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                  /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/,
                                 message: "email is invalid",
                               },
                             })}
