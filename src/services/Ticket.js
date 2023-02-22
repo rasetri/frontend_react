@@ -16,7 +16,10 @@ export class TicketService {
               label
               closed
               description
-              user_id
+              user_id {
+                id
+                name
+              }
             }
           }
         }
@@ -60,7 +63,7 @@ export class TicketService {
     return this.client.query({
       query: gql`
         query ticketsConnection($where: JSON!) {
-          ticketsConnection(where: $where, sort: "id:desc", limit: 50) {
+          ticketsConnection(where: $where, sort: "updated_at:desc", limit: 50) {
             values {
               id
               label
@@ -78,7 +81,7 @@ export class TicketService {
       `,
       variables: {
         where: {
-          id: id,
+          user_id: {id: id},
           closed: closed,
         },
       },
@@ -89,7 +92,7 @@ export class TicketService {
     return this.client.query({
       query: gql`
         query ticketsConnection($where: JSON!) {
-          ticketsConnection(where: $where, sort: "id:desc", limit: 50) {
+          ticketsConnection(where: $where, sort: "updated_at:desc", limit: 50) {
             values {
               id
               label

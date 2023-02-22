@@ -44,7 +44,7 @@ const SendMessage = ({ user, ticket, addToList }) => {
   };
 
   return (
-    <>
+    <div className="footer ">
       <form className="p-3 p-xl-4" onSubmit={handleSubmit(onSubmit)}>
         <ToastContainer position="top-center" autoClose={3000} />
         <div className="mb-3">
@@ -73,7 +73,7 @@ const SendMessage = ({ user, ticket, addToList }) => {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

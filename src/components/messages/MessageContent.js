@@ -12,7 +12,7 @@ const MessageContent = ({ user, ticket }) => {
   //Add a new message to local
   const addToList = (message) => {
     let list = [...listMessages];
-    list.unshift(message);
+    list.push(message);
     set_listMessages(list);
   };
 
@@ -39,10 +39,15 @@ const MessageContent = ({ user, ticket }) => {
     <>
       <ToastContainer position="top-center" autoClose={3000} />
       <MainMessage user={user} ticket={ticket} />
-      <SendMessage user={user} ticket={ticket} addToList={addToList} />
       {listMessages.map((message) => (
         <MessageModel user={user} message={message} key={message.id} />
       ))}
+      {!ticket.closed && (
+        <SendMessage user={user} ticket={ticket} addToList={addToList} />
+      )}
+      {ticket.closed && (
+        <p className="h4" style={{color: "red"}}>Ticket closed! You can not reply anymore.</p>
+      )}
     </>
   );
 };

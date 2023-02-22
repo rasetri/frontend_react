@@ -12,7 +12,7 @@ function OpenTicketsPage() {
     <div>
       <Layout user={state} title={title}>
         {isUser && <Openticketsuser user={state} />}
-        {!isUser && <Openticketsadmin user={state} />}
+        {!isUser && <Openticketsadmin/>}
       </Layout>
     </div>
   );

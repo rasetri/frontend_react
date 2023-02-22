@@ -39,7 +39,7 @@ export class MessageService {
     return this.client.query({
       query: gql`
         query ticketMessages($where: JSON!) {
-          ticketMessages(where: $where, sort: "id:desc",) {
+          ticketMessages(where: $where, sort: "id:asc",) {
             id
             message
             created_at
@@ -62,7 +62,7 @@ export class MessageService {
     return this.client.query({
       query: gql`
         query ticketsConnection($where: JSON!) {
-          ticketsConnection(where: $where, sort: "id:desc", limit: 50) {
+          ticketsConnection(where: $where, sort: "id:asc", limit: 50) {
             values {
               id
               label

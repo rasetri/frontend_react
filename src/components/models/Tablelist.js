@@ -6,6 +6,7 @@ import { confirmAlert } from "react-confirm-alert";
 const Tablelist = ({ ticketlist, deleteFromList }) => {
   const _ticketService = new TicketService();
 
+  //Function to handle closing support ticket
   const handleClose = (id) => {
     confirmAlert({
       title: "Confirmation",
@@ -37,8 +38,8 @@ const Tablelist = ({ ticketlist, deleteFromList }) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Updated on</th>
-            <th>Created on</th>
+            <th>Created</th>
+            <th>Updated</th>
             <th>Label</th>
             <th>Description</th>
             <th></th>
@@ -48,14 +49,14 @@ const Tablelist = ({ ticketlist, deleteFromList }) => {
           {ticketlist.map((ticket) => (
             <tr key={ticket.id}>
               <td>{ticket.id}</td>
-              <td>{new Date(ticket.updated_at).toLocaleString()}</td>
               <td>{new Date(ticket.created_at).toLocaleString()}</td>
+              <td>{new Date(ticket.updated_at).toLocaleString()}</td>              
               <td>{ticket.label}</td>
               <td>{ticket.description}</td>
               {!ticket.closed && (
                 <td>
                   <p
-                    className="btn btn-danger btn-sm"
+                    className="btn btn-primary btn-sm"
                     onClick={()=> handleClose(ticket.id)}
                   >
                     Close
@@ -64,7 +65,7 @@ const Tablelist = ({ ticketlist, deleteFromList }) => {
               )}
               <td>
                 <Link
-                  className="btn btn-primary btn-sm"
+                  className="btn btn-success btn-sm"
                   to="/viewTicketMessage"
                   state={ticket}
                 >
