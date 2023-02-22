@@ -3,8 +3,8 @@ import { createUploadLink } from "apollo-upload-client";
 
 export class TicketService {
   client = new ApolloClient({
-    uri: "http://127.0.0.1:1337/graphql",
-    link: createUploadLink({ uri: "http://127.0.0.1:1337/graphql" }),
+    uri: process.env.REACT_APP_GQL,
+    link: createUploadLink({ uri: process.env.REACT_APP_GQL }),
     cache: new InMemoryCache(),
   });
 

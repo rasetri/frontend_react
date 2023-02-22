@@ -26,7 +26,6 @@ const MessageContent = ({ user, ticket }) => {
           data: { ticketMessages },
         } = res;
         set_listMessages(ticketMessages);
-        console.log(ticketMessages);
       }) //There are errors
       .catch((res) => toast.error(res.message));
   };

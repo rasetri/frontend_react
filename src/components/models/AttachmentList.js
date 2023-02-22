@@ -1,5 +1,5 @@
 const AttachmentList = ({fileList}) => {
-const backend_url = "http://127.0.0.1:1337"
+const backend_url = process.env.REACT_APP_BACKEND;
 
     return (
         <table className="table table-sm table-bordered">

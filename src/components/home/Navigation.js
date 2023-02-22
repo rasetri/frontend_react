@@ -5,6 +5,7 @@ import { confirmAlert } from "react-confirm-alert";
 
 const Navigation = ({ user }) => {
   const navigate = useNavigate();
+  if(user === null) return navigate("/signin");
   const isUser = user.role === "user";
   const handleSignOut = () => {
     confirmAlert({
@@ -47,7 +48,7 @@ const Navigation = ({ user }) => {
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/openTickets" state={user}>
-              Open tickets
+                Open tickets
               </Link>
             </li>
             <li className="nav-item">

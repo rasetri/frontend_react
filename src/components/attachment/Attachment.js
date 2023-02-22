@@ -25,7 +25,6 @@ const Attachment = ({ user, is_ticket, id }) => {
         set_fileList([]);
         const values = res.data.attachmentsConnection.values;
         set_fileList(values);
-        console.log(res);
       }) //There are errors
       .catch((res) => toast.error(res.message));
   };

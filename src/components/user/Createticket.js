@@ -29,7 +29,6 @@ const Createticket = ({ user }) => {
               .then((res) => {
                 const is_ticket = true;
                 const id = res.data.createTicket.ticket.id;
-                console.log("RES TICKET", res);
                 toast.success(`Ticket has been sent!`);
                 clearInputs();
                 navigate('/viewAttachments',{state: {user, is_ticket, id}});
