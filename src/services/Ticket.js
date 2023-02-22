@@ -119,7 +119,6 @@ export class TicketService {
   }
 
   uploadfile(file) {
-    console.log("query", file);
     return this.client.mutate({
       mutation: gql`
         mutation UPLOAD_FILE($file: Upload!) {
