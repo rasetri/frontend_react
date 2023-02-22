@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
+import AttachmentPage from "./pages/Attachment/attachmentPage";
 import ClosedTicketsPage from "./pages/home/closedTicketsPage";
 import Createticketpage from "./pages/home/createTicketPage";
 import OpenTicketsPage from "./pages/home/openTicketsPage";
@@ -17,6 +18,7 @@ function Router() {
           <Route path="/openTickets" element={<OpenTicketsPage />} />
           <Route path="/closedTickets" element={<ClosedTicketsPage />} />
           <Route path="/viewTicketmessage" element={<MessagePage />} />
+          <Route path="/viewAttachments" element={<AttachmentPage />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

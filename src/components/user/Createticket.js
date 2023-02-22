@@ -1,31 +1,53 @@
 import { TicketService } from "../../services/Ticket";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
 
-const Createticket = ({user}) => {
+
+const Createticket = ({ user }) => {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
   const _ticketService = new TicketService();
 
   //Sending ticket form
   const onSubmit = (values) => {
-    _ticketService
-      .addTicket(values, user.id)
-      .then(() => {
-        toast.success(`Ticket has been sent!`);
-        clearInputs();
-      })
-      .catch((res) => toast.error(res.message));
+    confirmAlert({
+      title: "Confirmation",
+      message: `Do you want to send this request?`,
+      buttons: [
+        {
+          label: "confirm",
+          onClick: () => {
+            _ticketService
+              .addTicket(values, user.id)
+              .then((res) => {
+                const is_ticket = true;
+                const id = res.data.createTicket.ticket.id;
+                console.log("RES TICKET", res);
+                toast.success(`Ticket has been sent!`);
+                clearInputs();
+                navigate('/viewAttachments',{state: {user, is_ticket, id}});
+              })
+              .catch((res) => toast.error(res.message));
+          },
+        },
+        {
+          label: "Cancel",
+        },
+      ],
+    });
   };
 
   //Clear form inputs
-  const clearInputs = () =>{
+  const clearInputs = () => {
     reset();
-  } 
+  };
 
   return (
     <div className="bg-gradient-primary">
